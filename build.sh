@@ -35,11 +35,11 @@ function make_kernel() {
   echo -e "$cyan***********************************************"
   echo -e "          Initializing defconfig          "
   echo -e "***********************************************$nocol"
-  make $defconfig CC=clang O=output/
+  make $defconfig CC='ccache clang  -Qunused-arguments -fcolor-diagnostics' O=output/
   echo -e "$cyan***********************************************"
   echo -e "             Building kernel          "
   echo -e "***********************************************$nocol"
-  make -j$(nproc --all) CC=clang O=output/
+  make -j$(nproc --all) CC='ccache clang  -Qunused-arguments -fcolor-diagnostics' O=output/
   if ! [ -a $KERNEL_IMG ];
   then
     echo -e "$red Kernel Compilation failed! Fix the errors! $nocol"
